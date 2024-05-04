@@ -11,6 +11,37 @@ public class Kata4 {
     For example, LIKE/LIKE/LIKE/DISLIKE/DISLIKE/DISLIKE would be NEUTRAL.
      */
 
+    public enum LikeOrDislike {
+        LIKE,
+        DISLIKE
+    }
+
+    public String likesAndDislikes(String[] input) {
+        int counter = 0;
+        for (int i = 0; i < input.length; i++) {
+            if ( (input[i].equals(LikeOrDislike.LIKE.name())) && ( counter == 0 ) )  {
+                counter++;
+            } else if ( (input[i].equals(LikeOrDislike.LIKE.name())) && ( counter > 0 ) ) {
+                counter--;
+            } else if ( (input[i].equals(LikeOrDislike.LIKE.name())) && ( counter < 0 ) ) {
+                counter++;
+            } else if ( (input[i].equals(LikeOrDislike.DISLIKE.name())) && ( counter == 0 ) ) {
+                counter--;
+            } else if ( (input[i].equals(LikeOrDislike.DISLIKE.name())) && ( counter < 0 ) ) {
+                counter++;
+            } else /* if ( (input[i].equals(LikeOrDislike.DISLIKE.name())) && ( counter > 0 ) ) */ {
+                counter--;
+            }
+        }
+        if (counter == 0) {
+            return "NEUTRAL";
+        } else if (counter > 0) {
+            return "LIKE";
+        } else {
+            return "DISLIKE";
+        }
+    }
+
 //    input of ENUM : LIKE / DISLIKE
 //    Set up a counter variable
 //    iterate through ENUM input
